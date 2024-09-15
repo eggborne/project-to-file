@@ -1,0 +1,19 @@
+{
+  "name": "project-to-file",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mike-donovan",
+  "license": "ISC",
+  "description": "",
+  "bin": {
+    "ptf": "./cli.js"
+  },
+  "devDependencies": {
+    "electron": "^32.1.0"
+  }
+}

@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Project to File GUI</title>
+</head>
+
+<body>
+  <h1>Project to File GUI</h1>
+
+  <form id="project-form">
+    <div>
+      <label for="sourceDir">Source Directory:</label>
+      <input type="text" id="sourceDir" readonly>
+      <button type="button" id="browseSource">Browse...</button>
+    </div>
+    <div>
+      <label for="destDir">Destination Directory:</label>
+      <input type="text" id="destDir" readonly>
+      <button type="button" id="browseDest">Browse...</button>
+    </div>
+    <div>
+      <label for="outputType">Output Type:</label>
+      <select id="outputType">
+        <option value="json">JSON</option>
+        <option value="text">Text</option>
+      </select>
+    </div>
+    <div>
+      <label>Exclusions:</label>
+      <ul id="exclusionsList"></ul>
+      <button type="button" id="addExclusion">Add Exclusion</button>
+    </div>
+    <div>
+      <button type="submit">Start</button>
+    </div>
+  </form>
+
+  <div id="status"></div>
+
+  <script src="renderer.js"></script>
+</body>
+
+</html>
