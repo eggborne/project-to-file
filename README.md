@@ -1,78 +1,175 @@
+# Project-to-File
 
-# project-to-file
+**Project-to-File** is a Node.js application that compiles the structure and content of a source code project into a single JSON or text file. This tool is especially useful for sharing codebases without providing full access to the repository, conducting code reviews, or archiving projects.
 
-`project-to-file` is an NPM package that consolidates all text-based content from a specified source directory into a single file. This helps developers, or large language models (LLMs), get a comprehensive view of a project’s codebase by excluding unnecessary files and including only relevant text.
+The application provides both a Command-Line Interface (CLI) and a Graphical User Interface (GUI) built with Electron, allowing users to easily select source and destination directories, choose output formats, and specify files or directories to exclude.
+
+---
 
 ## Features
 
-- Compile project files into a single JSON or text file.
-- Exclude specified directories and files using command-line arguments.
-- Automatically exclude common irrelevant files like `.git`, `node_modules`, and others.
-- Use a `.gitignore` file for exclusions.
-- JSON is the default output format, but a text format is also available.
+**Compile Projects to JSON or Text**: Convert your entire project into a structured JSON file or a concatenated text file.
+**GUI and CLI Support**: Use the tool via command line or through an intuitive GUI.
+**Exclusion Support**: Exclude specific files or directories from the output.
+**.gitignore Integration**: Automatically ignores files and directories specified in `.gitignore`.
+**Supports Multiple Languages**: Handles files with extensions like `.js`, `.py`, `.java`, `.html`, `.css`, and more.
+---
+
+## Table of Contents
+
+Installation
+Prerequisites
+Clone the Repository
+Install Dependencies
+Usage
+Running the GUI
+Using the GUI
+Using the CLI
+CLI Options
+Examples
+Supported File Types
+Exclusions
+Using .gitignore
+Specifying Exclusions
+Contributing
+License
+---
 
 ## Installation
 
-To install `project-to-file` globally, run:
+### Prerequisites
 
-```bash
-npm install -g project-to-file
-```
+Node.js (version 14 or higher)
+npm (comes with Node.js)
+### Clone the Repository
+
+```bash git clone https://github.com/yourusername/project-to-file.git cd project-to-file ```
+
+### Install Dependencies
+
+```bash npm install ```
+
+---
 
 ## Usage
 
-Basic usage requires specifying a source directory and a destination directory:
+### Running the GUI
 
-```bash
-ptf <source_directory> <destination_directory> [exclusions...]
-```
+The GUI provides an easy way to select directories and options without using the command line.
 
-### Options
+Start the application with:
 
-- `-txt`: Use this flag to generate a text file instead of the default JSON file.
+```bash npm start ```
 
-### Arguments
+This will open the Electron-based GUI application.
 
-- `<source_directory>`: The path to the source directory containing the project files you want to consolidate.
-- `<destination_directory>`: The path to the directory where the output file will be saved.
-- `[exclusions...]`: Optional. Paths to specific directories or files within the source directory to exclude.
+#### Using the GUI:
 
-### Examples
+Source Directory: Click "Browse..." to select the project directory you want to compile.
+Destination Directory: Click "Browse..." to select where the output file will be saved.
+Output Type: Choose between JSON or Text format.
+Exclusions: Click "Add Exclusion" to exclude specific files or directories. You can add multiple exclusions.
+Start: Click "Start" to begin the process.
+---
 
-1. **Generate a JSON file (default):**
+### Using the CLI
 
-   Consolidate all relevant files from `./my-project` into `./output/my-project.json`:
+The CLI allows you to use the tool directly from the command line.
 
-   ```bash
-   ptf ./my-project ./output
-   ```
+#### Command Syntax
 
-2. **Generate a text file using the `-txt` flag:**
+```bash node cli.js [options] <source_directory> <destination_directory> [exclusions...] ```
 
-   Consolidate all relevant files into a text file and save it as `./output/my-project.txt`:
+Alternatively, if installed globally:
 
-   ```bash
-   ptf -txt ./my-project ./output
-   ```
+```bash ptf [options] <source_directory> <destination_directory> [exclusions...] ```
 
-3. **Excluding specific directories and files:**
+#### CLI Options
 
-   Exclude `src/resources` and `src/privacy.html` from the consolidation:
+`-txt`: Generate a concatenated text file instead of JSON.
+#### Examples
 
-   ```bash
-   ptf ./my-project ./output src/resources src/privacy.html
-   ```
+Generate a JSON file from `./my-project` to `./output`:
 
-## How It Works
+```bash ptf ./my-project ./output ```
 
-1. **File Inclusion**: The tool includes files with extensions typically associated with source code, documentation, and configuration, such as `.js`, `.html`, `.css`, `.md`, `.json`, etc. It specifically includes the `package.json` file for Node.js projects.
-2. **Directory and File Exclusions**: Commonly excluded directories (e.g., `.git`, `node_modules`) and files (e.g., `package-lock.json`, `.env`) are automatically skipped. You can also specify additional exclusions.
-3. **Output Format**: By default, the output is in JSON format, which is structured to maintain the project's directory hierarchy. Using the `-txt` flag will generate a simpler text file output.
+Generate a text file from `./my-project` to `./output`:
 
-## License
+```bash ptf -txt ./my-project ./output ```
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Exclude specific directories or files:
+
+```bash ptf ./my-project ./output node_modules dist ```
+
+---
+
+## Supported File Types
+
+The tool processes files with the following extensions:
+
+`.js`, `.jsx`, `.ts`, `.tsx`
+`.py`, `.java`, `.c`, `.cpp`
+`.html`, `.css`, `.scss`
+`.md`, `.txt`, `.json`, `.yml`, `.yaml`, `.xml`
+Special File: `package.json` is always included.
+---
+
+## Exclusions
+
+### Using .gitignore
+
+The tool automatically respects the `.gitignore` file in the source directory, excluding any files or directories specified there.
+
+### Specifying Exclusions
+
+You can specify additional files or directories to exclude:
+
+GUI: Use the "Add Exclusion" button to browse and select files or directories to exclude.
+
+CLI: List the paths after the destination directory:
+
+```bash ptf ./my-project ./output path/to/exclude another/path/to/exclude ```
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue to help improve the tool.
+Contributions are welcome! Please follow these steps:
+
+Fork the Repository:
+
+Click the "Fork" button at the top right of the repository page.
+
+Clone Your Fork:
+
+```bash git clone https://github.com/yourusername/project-to-file.git cd project-to-file ```
+
+Create a New Branch:
+
+```bash git checkout -b feature/YourFeature ```
+
+Make Your Changes:
+
+Implement your feature or bug fix.
+
+Commit Your Changes:
+
+```bash git add . git commit -m "Add your message here" ```
+
+Push to Your Fork:
+
+```bash git push origin feature/YourFeature ```
+
+Open a Pull Request:
+
+Go to the original repository and click "New Pull Request," then select your branch.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+If you have any questions or need assistance, feel free to open an issue or contact the maintainer.
